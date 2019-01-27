@@ -33,24 +33,17 @@ html {
   border: solid 1px red;
 }
 
-h1 {
+h1, h2, h3, h4, p {
   color: #f28e1c;
 }
 
+h4 {
+  font-size: 1.5rem;
+}
 
 /*title*/
 
 .App {
   display: flex;
   flex-direction: column;
-}
-
-.HomePage {
-  height: 775px;
-  display: flex;
-  align-items: center;
-  background-image: url('./brewery.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }

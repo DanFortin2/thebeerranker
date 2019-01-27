@@ -58,10 +58,6 @@ li {
 .Title {
   background-color: black;
   height: 20rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .Title-header {
@@ -70,10 +66,35 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: solid 2px #f28e1c;
 }
 
 .Beer-Types {
   display: flex;
   justify-content: space-around;
   font-size: 30px;
+}
+
+.HomePage {
+  height: 775px;
+  display: flex;
+  align-items: center;
+  background-image: url('../App/brewery.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.Beer-Types li {
+  cursor: pointer;
+}
+
+.Beer-Types li:hover {
+  color: #d4cfcf;
+}
+
+.Beer-Types li.active,
+.Beer-Types li.active:hover {
+  color: #f0c36c;
 }
