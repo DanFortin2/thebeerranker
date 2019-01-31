@@ -1,11 +1,11 @@
 import React from 'react';
 
-class LagerList extends React.Component {
+class AleList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       beers: {
-        title: 'Molson Canadian',
+        title: 'Rickards Red',
         type: 'Lager',
         price: '$3.00',
         img: ''
@@ -18,7 +18,6 @@ class LagerList extends React.Component {
         <div className="Lager-Tile">
           <h2>{this.state.beers.title}</h2>
           <img src={require('./beer.jpg')} />
-          <p>Crisp smooth taste. Best served cold</p>
           <div className="Beer-information">
             <p>{this.state.beers.type}</p>
             <p>{this.state.beers.price}</p>
@@ -85,4 +84,4 @@ class LagerList extends React.Component {
   }
 }
 
-export default LagerList;
+export default AleList;

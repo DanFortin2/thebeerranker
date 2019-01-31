@@ -13,7 +13,7 @@ let beerTypes = {
 class Title extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {sortBy: 'Lager'};
+    this.state = {sortBy: ''};
     this.renderSortByOptions = this.renderSortByOptions.bind(this);
     this.handleSortByChange = this.handleSortByChange.bind(this);
   }
@@ -28,7 +28,6 @@ class Title extends React.Component {
       return <li className={this.getSortByClass(beerTypeValue)} onClick={this.handleSortByChange.bind(this, beerTypeValue)} key={beerTypeValue}>{beerType}</li>;
     });
   }
-
 
   handleSortByChange(beerType) {
     this.setState({
@@ -58,7 +57,7 @@ class Title extends React.Component {
           </div>
         </header>
         <div className = "HomePage">
-          < Lager  beers = {this.props.beers}/>
+          <Lager  sortBy={this.state.sortBy}/>
         </div>
       </div>
     );
