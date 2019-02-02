@@ -27,18 +27,117 @@
 html {
   font-size: 16px;
   box-sizing: border-box;
+  background: url(../App/brewery.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-* {
-  border: solid 1px red;
+h1, p, a, h2, h3, h4, li, div, header {
+  /*border: solid 1px red;*/
 }
 
-h1, h2, h3, h4, p {
-  color: #f28e1c;
+h1 {
+  text-align: center;
+  font-size: 10rem;
+  font-family: "Roboto";
+  font-weight: Bold;
 }
 
-h4 {
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: "Roboto";
+}
+
+p {
   font-size: 1.5rem;
 }
 
+h1, p, a, h2, h3, h4, li {
+  color: #f28e1c;
+}
+
+li {
+  display: inline-block;
+  font-family: "Montserrat";
+}
+
+img {
+  height: 30rem;
+  width: 30rem;
+}
+
 /*title*/
+
+.Title-header {
+  position: fixed;
+  z-index: 1;
+  background-color: black;
+  height: 15rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: solid 2px #f28e1c;
+}
+
+/*Menu options*/
+
+.Beer-Types {
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  width: 100%;
+}
+
+.Beer-Types li {
+  cursor: pointer;
+}
+
+.Beer-Types li:hover,
+.Beer-Types li.active,
+.Beer-Types li.active:hover {
+  color: #d4cfcf;
+}
+
+
+/*conatiner for beer lists*/
+.HomePage {
+  position: relative;
+  height: 100%;
+  top: 16rem;
+}
+
+
+
+/*Beer List determination*/
+
+.Beer-List {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*Beer Tiles*/
+
+.Lager-Tile {
+  background-color: rgba(0,0,0,0.75);
+  min-width: 30%;
+  min-height: 10rem;
+  margin: 1%;
+  border: solid 2px #f28e1c;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.Beer-information {
+  display: flex;
+  border: solid 1px red;
+  justify-content: space-around;
+  width: 100%;
+}

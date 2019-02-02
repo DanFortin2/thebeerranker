@@ -1,6 +1,5 @@
 import React from 'react';
-import './Title.css';
-import Lager from '../Lager/Lager';
+import BeerType from '../BeerType/BeerType';
 
 let beerTypes = {
   'Lager': 'Lager',
@@ -57,7 +56,7 @@ class Title extends React.Component {
           </div>
         </header>
         <div className = "HomePage">
-          <Lager  sortBy={this.state.sortBy}/>
+          <BeerType  sortBy={this.state.sortBy}/>
         </div>
       </div>
     );

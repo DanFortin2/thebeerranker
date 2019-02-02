@@ -1,4 +1,5 @@
 import React from 'react';
+import { AppRegistry, View, Image, StyleSheet } from 'react-native';
 
 class LagerList extends React.Component {
   constructor(props) {
@@ -17,64 +18,8 @@ class LagerList extends React.Component {
       <div className='Beer-List'>
         <div className="Lager-Tile">
           <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
+          <Image source={require('./beer.jpg')}/>
           <p>Crisp smooth taste. Best served cold</p>
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
           <div className="Beer-information">
             <p>{this.state.beers.type}</p>
             <p>{this.state.beers.price}</p>
