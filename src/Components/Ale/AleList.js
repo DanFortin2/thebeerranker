@@ -1,29 +1,29 @@
 import React from 'react';
 
-class PilsnerList extends React.Component {
+class AleList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       beers: [{
-        title: 'Nooners',
+        title: 'Ale',
         type: 'Pilsner',
         price: '$3.00',
         img: require('./beer.jpg')
       },
       {
-        title: 'Pissing Pilsners',
+        title: 'Ale',
         type: 'Pilsner',
         price: '$3.00',
         img: require('./beer.jpg')
       },
       {
-        title: 'Other Beer',
+        title: 'Ale',
         type: 'Pilsner',
         price: '$3.00',
         img: require('./beer.jpg')
       },
       {
-        title: 'Yahoo',
+        title: 'Ale',
         type: 'Pilsner',
         price: '$3.00',
         img: require('./beer.jpg')
@@ -50,4 +50,5 @@ class PilsnerList extends React.Component {
   }
 }
 
-export default PilsnerList;
+
+export default AleList;
