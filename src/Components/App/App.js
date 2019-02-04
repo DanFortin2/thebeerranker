@@ -13,7 +13,7 @@ class App extends React.Component {
         <div className="App">
           <div>
             <Route exact path="/" component={Title} />
-            <Route path="/beers" component={LagerList} />
+            <Route path="/lagers" component={LagerList} />
           </div>
         </div>
       </Router>

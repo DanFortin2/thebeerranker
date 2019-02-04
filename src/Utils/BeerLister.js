@@ -4,8 +4,8 @@ const Beers = {};
 const baseUrl = 'http://localhost:4000/api'
 
 
-Beers.getBeers = () => {
-  const url = `${baseUrl}/beers`;
+Beers.getLagers = () => {
+  const url = `${baseUrl}/lagers`;
 
   return fetch(url).then(response => {
     if (!response.ok) {

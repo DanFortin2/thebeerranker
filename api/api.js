@@ -1,7 +1,7 @@
 const express = require('express');
 const apiRouter = express.Router();
-const beerRouter = require('./beer.js');
+const lagerRouter = require('./lagerlist.js');
 
-apiRouter.use('/beers', beerRouter);
+apiRouter.use('/lagers', lagerRouter);
 
 module.exports = apiRouter;

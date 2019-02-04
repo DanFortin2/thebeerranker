@@ -11,7 +11,7 @@ class LagerList extends React.Component {
   }
 
   componentDidMount() {
-    Beers.getBeers().then(beerItem => {
+    Beers.getLagers().then(beerItem => {
       this.setState({
         beers: beerItem
       })
