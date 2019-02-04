@@ -65,8 +65,8 @@ li {
 }
 
 img {
-  height: 30rem;
-  width: 30rem;
+  height: 15rem;
+  width: 15rem;
 }
 
 /*title*/
@@ -118,13 +118,14 @@ img {
 .Beer-List {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 /*Beer Tiles*/
 
 .Lager-Tile {
   background-color: rgba(0,0,0,0.75);
-  min-width: 30%;
+  min-width: 20%;
   min-height: 10rem;
   margin: 1%;
   border: solid 2px #f28e1c;
@@ -140,4 +141,19 @@ img {
   border: solid 1px red;
   justify-content: space-around;
   width: 100%;
+}
+
+/*Media Queries*/
+
+
+@media only screen and (max-width: 1300px) {
+  h1 {
+    font-size: 5rem;
+  }
+  .Lager-Tile {
+
+  }
+  .Title-header {
+
+  }
 }
