@@ -1,87 +1,42 @@
 import React from 'react';
+import Beers from '../../Utils/BeerLister'
+
 
 class AleList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      beers: {
-        title: 'Rickards Red',
-        type: 'Lager',
-        price: '$3.00',
-        img: ''
-      }
+      beers: []
     };
   }
+
+  componentDidMount() {
+    Beers.getAles().then(beerItem => {
+      this.setState({
+        beers: beerItem
+      })
+    });
+  }
+
+  renderSortByOptions() {
+    //The Object.keys() method returns an array of a given object's own property names, in the same order as we get with a normal loop
+    return Object.keys(this.state.beers).map(beerType => {
+      let beerTypeValue = this.state.beers[beerType];
+      console.log(beerTypeValue.imgUrl);
+      //returned the above value and appended LI elements on it, added a classname attribute to go wtih the css file, and an onClick listener event that binds  handlechange to it
+      return <div className="Lager-Tile" key={beerTypeValue.id}><h2>{beerTypeValue.name}</h2><img className="beerimg" src={beerTypeValue.imgUrl}/>
+        <div className="Beer-information"><p>IBU: {beerTypeValue.ibu}</p><p>Alc. {beerTypeValue.percent}%</p></div><div className="location"><p>Brewed in: {beerTypeValue.location}</p></div><div className="beerdesc"><p>{beerTypeValue.description}</p></div></div>;
+    });
+  }
+
   render() {
     return (
       <div className='Beer-List'>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
-        <div className="Lager-Tile">
-          <h2>{this.state.beers.title}</h2>
-          <img src={require('./beer.jpg')} />
-          <div className="Beer-information">
-            <p>{this.state.beers.type}</p>
-            <p>{this.state.beers.price}</p>
-          </div>
-        </div>
+        {this.renderSortByOptions()}
       </div>
     );
   }
 }
+
 
 export default AleList;

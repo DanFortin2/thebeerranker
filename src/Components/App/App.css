@@ -34,10 +34,6 @@ html {
   background-size: cover;
 }
 
-h1, p, a, h2, h3, h4, li, div, header {
-  /*border: solid 1px red;*/
-}
-
 h1 {
   text-align: center;
   font-size: 10rem;
@@ -47,7 +43,7 @@ h1 {
 
 h2 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 1.7rem;
   font-family: "Roboto";
 }
 
@@ -67,6 +63,7 @@ li {
 img {
   height: 15rem;
   width: 15rem;
+  border: solid 2px #f28e1c;
 }
 
 /*title*/
@@ -118,16 +115,16 @@ img {
 .Beer-List {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  padding-left: 6%;
+  padding-right: 6%;
 }
 
 /*Beer Tiles*/
 
 .Lager-Tile {
   background-color: rgba(0,0,0,0.75);
-  min-width: 20%;
-  min-height: 10rem;
-  margin: 1%;
+  width: 28%;
+  margin: 1.5%;
   border: solid 2px #f28e1c;
   display: flex;
   flex-direction: column;
@@ -138,9 +135,26 @@ img {
 
 .Beer-information {
   display: flex;
-  border: solid 1px red;
   justify-content: space-around;
   width: 100%;
+}
+
+.beerimg {
+  margin-top: 0.5rem;
+}
+
+.beerdesc, .location, .Beer-information {
+  margin-top: 0.5rem;
+}
+
+.beerdesc {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.beerdesc p {
+  font-size: 1rem;
 }
 
 /*Media Queries*/
