@@ -139,6 +139,37 @@ img {
   padding-right: 6%;
 }
 
+/* Add Beer Dialogue Box*/
+
+.Dialogue-Box {
+  top: 20rem;
+  position: fixed;
+  z-index: 2;
+  border: solid 2px #f28e1c;
+  width: 40rem;
+  height: 30rem;
+  background-color: rgb(0,0,0);
+}
+
+.Add-Dialogue {
+  border: solid 1px red;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-items {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.menu-items li {
+  border: solid 1px #f28e1c;
+  border-radius: 5px;
+  padding: 3px;
+  cursor: pointer;
+}
+
 /*Beer Tiles*/
 
 .Lager-Tile {

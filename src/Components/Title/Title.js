@@ -13,9 +13,13 @@ let beerTypes = {
 class Title extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {sortBy: ''};
+    this.state = {
+      sortBy: '',
+      showAddBeerScreen: false
+    };
     this.renderSortByOptions = this.renderSortByOptions.bind(this);
     this.handleSortByChange = this.handleSortByChange.bind(this);
+    this.generateAddBeerScreen = this.generateAddBeerScreen.bind(this);
   }
 
 
@@ -32,6 +36,12 @@ class Title extends React.Component {
   handleSortByChange(beerType) {
     this.setState({
       sortBy: beerType
+    });
+  }
+
+  generateAddBeerScreen() {
+    this.setState({
+      showAddBeerScreen: true
     });
   }
 
@@ -56,11 +66,12 @@ class Title extends React.Component {
             </ul>
           </div>
           <div className='Add-Beer'>
-            <span className='plus-icon'>+</span>
+            <span className='plus-icon' onClick={this.generateAddBeerScreen}>+</span>
           </div>
         </header>
         <div className = "HomePage">
           <BeerType  sortBy={this.state.sortBy}/>
+          <AddBeer show={this.state.showAddBeerScreen}/>
         </div>
       </div>
     );
