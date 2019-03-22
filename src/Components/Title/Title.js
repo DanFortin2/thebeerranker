@@ -1,5 +1,6 @@
 import React from 'react';
 import BeerType from '../BeerType/BeerType';
+import AddBeer from '../AddBeer/AddBeer';
 
 let beerTypes = {
   'Lager': 'Lager',
@@ -53,6 +54,9 @@ class Title extends React.Component {
             <ul className='Beer-Types' onClick={this.handleSortChangeAutoSearch}>
               {this.renderSortByOptions()}
             </ul>
+          </div>
+          <div className='Add-Beer'>
+            <span className='plus-icon'>+</span>
           </div>
         </header>
         <div className = "HomePage">
