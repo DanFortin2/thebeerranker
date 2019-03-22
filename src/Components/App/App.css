@@ -142,7 +142,7 @@ img {
 /* Add Beer Dialogue Box*/
 
 .Dialogue-Box {
-  top: 20rem;
+  top: 10rem;
   position: fixed;
   z-index: 2;
   border: solid 2px #f28e1c;

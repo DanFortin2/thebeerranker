@@ -20,6 +20,8 @@ class Title extends React.Component {
     this.renderSortByOptions = this.renderSortByOptions.bind(this);
     this.handleSortByChange = this.handleSortByChange.bind(this);
     this.generateAddBeerScreen = this.generateAddBeerScreen.bind(this);
+    this.displayBeerModal = this.displayBeerModal.bind(this);
+    this.hideAddBeerScreen = this.hideAddBeerScreen.bind(this);
   }
 
 
@@ -45,6 +47,18 @@ class Title extends React.Component {
     });
   }
 
+  hideAddBeerScreen() {
+    this.setState({
+      showAddBeerScreen: false
+    });
+  }
+
+  displayBeerModal() {
+    if (this.state.showAddBeerScreen === true) {
+      return <div className='Dialogue-Box'><div><ul className='menu-items'><li className='close' onClick={this.hideAddBeerScreen}>Close</li><li className='add'>Add</li>  </ul></div><div><h2>test</h2></div><div></div></div>;
+    }
+  }
+
   getSortByClass(beerType) {
     if(this.state.sortBy === beerType) {
       return 'active'
@@ -52,7 +66,7 @@ class Title extends React.Component {
       return;
     }
   }
-
+          //<AddBeer show={this.state.showAddBeerScreen}/>
   render() {
     return (
       <div className="Title">
@@ -71,7 +85,9 @@ class Title extends React.Component {
         </header>
         <div className = "HomePage">
           <BeerType  sortBy={this.state.sortBy}/>
-          <AddBeer show={this.state.showAddBeerScreen}/>
+        </div>
+        <div className='Add-Dialogue'>
+          {this.displayBeerModal()}
         </div>
       </div>
     );
