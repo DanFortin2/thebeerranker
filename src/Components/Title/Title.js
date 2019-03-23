@@ -1,6 +1,6 @@
 import React from 'react';
 import BeerType from '../BeerType/BeerType';
-import AddBeer from '../AddBeer/AddBeer';
+
 
 let beerTypes = {
   'Lager': 'Lager',
@@ -22,6 +22,7 @@ class Title extends React.Component {
     this.generateAddBeerScreen = this.generateAddBeerScreen.bind(this);
     this.displayBeerModal = this.displayBeerModal.bind(this);
     this.hideAddBeerScreen = this.hideAddBeerScreen.bind(this);
+    this.addBeerTile = this.addBeerTile.bind(this);
   }
 
 
@@ -53,9 +54,15 @@ class Title extends React.Component {
     });
   }
 
+  addBeerTile() {
+    this.setState({
+      showAddBeerScreen: false
+    });
+  }
+
   displayBeerModal() {
     if (this.state.showAddBeerScreen === true) {
-      return <div className='Dialogue-Box'><div><ul className='menu-items'><li className='close' onClick={this.hideAddBeerScreen}>Close</li><li className='add'>Add</li>  </ul></div><div><h2>test</h2></div><div></div></div>;
+      return <div className='Dialogue-Box'>   <div>     <ul className='menu-items'>       <li className='close' onClick={this.hideAddBeerScreen}>Close</li>       <li className='add' onClick={this.addBeerTile}>Add</li>     </ul>   </div>   <div>     <h2>Add Beer Review</h2>     <h3 className='required-fields'>* denotes required fields</h3>   </div>   <div className='beer-input-fields'>     <form>       <label><span className='required'>*</span>Name of Beer:         <input type="text" name="beername" maxlength="30" size="30"/>       </label>       <label><span className='required'>*</span>Brewed In:         <input type="text" name="Brewed"  maxlength="30" size="30"/>       </label>       <fieldset id="beer-dropdown">         <label><span className='required'>*</span>Beer Type:</label>         <select id = "myList">           <option value = "1">Lager</option>           <option value = "2">Stout</option>           <option value = "3">Pilsner</option>           <option value = "4">Ale</option>         </select>       </fieldset>       <label>IBU:         <input type="text" name="IBU"  maxlength="4" size="4"/>       </label>       <label>Alc %:         <input type="text" name="Alc"  maxlength="4" size="4"/>       </label>       <label className="formfielddesc"><span className='required'>*</span>Description:         <textarea type="text" name="Description"  maxlength="150" cols= "60" rows="3"/>       </label>     </form>   </div> </div>; 
     }
   }
 

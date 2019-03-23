@@ -14,5 +14,28 @@ lagerRouter.get('/', (req, res, next) => {
   });
 });
 
+lagerRouter.put('/', ()) => {
+  const newBeer = req.body.beers;
+  db.run(`INSERT INTO LagerList (name, percent, ibu, description, location) values ($name, $percent, $ibu, $description, $location)`,
+  {
+    $name : newBeer.name,
+    $percent : newBeer.percent,
+    $ibu : newBeer.ibu,
+    $description : newBeer.description,
+    $location : newBeer.location
+  },
+  function(err) {
+    if(err) {
+      next(err);
+    }
+    db.get(`SELECT * FROM LagerList WHERE id = ${this.lastID}`, (err, beers) => {
+      if (!beers) {
+        res.status(500).send();
+      }
+      res.status(201).json( {beers : beers} );
+    });
+  });
+};
+
 
 module.exports = lagerRouter;
