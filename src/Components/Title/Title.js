@@ -21,7 +21,7 @@ class Title extends React.Component {
       brewed: '',
       ibu: '',
       alc: '',
-      beerlist: 'lager',
+      beerlist: '',
       description: '',
       imgUrl: '/images/ale/northernloggersleepinggiant.jpg',
       beers: {
@@ -89,12 +89,12 @@ class Title extends React.Component {
 
   addBeerTile() {
     const newBeer = {
+      "beerlist": this.state.beerlist,
       "name": this.state.beername,
       "percent": this.state.alc,
       "ibu": this.state.ibu,
       "description": this.state.description,
       "location": this.state.brewed,
-      "beerlist": this.state.beerlist,
       "imgUrl": this.state.imgUrl
     }
     if (!newBeer.name || !newBeer.location || !newBeer.description || !newBeer.percent) {
@@ -111,24 +111,18 @@ class Title extends React.Component {
       });
     }
     console.log(newBeer);
-    Beers.createLagers(newBeer).then(newBeers => {
+    Beers.createBeer(newBeer).then(newBeers => {
       this.setState({
         beers: JSON.parse(JSON.stringify(newBeers))
       })
     });
   }
 
-/* logging to see beer object*/
-  componentDidUpdate() {
-    console.log(this.state.beers);
-  }
-
-
 
 
   displayBeerModal() {
     if (this.state.showAddBeerScreen === true) {
-      return <div className='Dialogue-Box'>   <div>     <ul className='menu-items'>       <li className='close' onClick={this.hideAddBeerScreen}>Close</li>       <li className='add' onClick={this.addBeerTile}>Add</li>     </ul>   </div>   <div>     <h2>Add Beer Review</h2>     <h3 className='required-fields'>* denotes required fields</h3>   </div>   <div className='beer-input-fields'>     <form>       <label><span className='required'>*</span>Name of Beer:         <input type="text" name="beername" maxLength="30" size="30" onChange={this.handleFormFieldValueChanges}/>       </label>       <label><span className='required'>*</span>Brewed In:         <input type="text" name="brewed"  maxLength="30" size="30" onChange={this.handleFormFieldValueChanges}/>       </label>       <fieldset id="beer-dropdown">         <label><span className='required'>*</span>Beer Type:</label>         <select id = "myList" value = {this.state.beerlist}  onChange={this.handleFormFieldValueChanges}>           <option value = "lager">Lager</option>           <option value = "stout">Stout</option>           <option value = "pilsner">Pilsner</option>           <option value = "ale">Ale</option>         </select>       </fieldset>       <label>IBU:         <input type="text" name="ibu"  maxLength="4" size="4" onChange={this.handleFormFieldValueChanges}/>       </label>       <label><span className='required'>*</span>Alc %:         <input type="text" name="alc"  maxLength="4" size="4" onChange={this.handleFormFieldValueChanges}/>       </label>       <label className="formfielddesc"><span className='required'>*</span>Description:         <textarea type="text" name="description"  maxLength="150" cols= "60" rows="3" onChange={this.handleFormFieldValueChanges}/>       </label>     </form>   </div> </div>;
+      return <div className='Dialogue-Box'>   <div>     <ul className='menu-items'>       <li className='close' onClick={this.hideAddBeerScreen}>Close</li>       <li className='add' onClick={this.addBeerTile}>Add</li>     </ul>   </div>   <div>     <h2>Add Beer Review</h2>     <h3 className='required-fields'>* denotes required fields</h3>   </div>   <div className='beer-input-fields'>     <form>       <label><span className='required'>*</span>Name of Beer:         <input type="text" name="beername" maxLength="30" size="30" onChange={this.handleFormFieldValueChanges}/>       </label>       <label><span className='required'>*</span>Brewed In:         <input type="text" name="brewed"  maxLength="30" size="30" onChange={this.handleFormFieldValueChanges}/>       </label>       <fieldset id="beer-dropdown">         <label><span className='required'>*</span>Beer Type:</label>         <select id = "myList" name="beerlist"  onChange={this.handleFormFieldValueChanges}>           <option value = "lager">Lager</option>           <option value = "stout">Stout</option>           <option value = "pilsner">Pilsner</option>           <option value = "ale">Ale</option>         </select>       </fieldset>       <label>IBU:         <input type="text" name="ibu"  maxLength="4" size="4" onChange={this.handleFormFieldValueChanges}/>       </label>       <label><span className='required'>*</span>Alc %:         <input type="text" name="alc"  maxLength="4" size="4" onChange={this.handleFormFieldValueChanges}/>       </label>       <label className="formfielddesc"><span className='required'>*</span>Description:         <textarea type="text" name="description"  maxLength="150" cols= "60" rows="3" onChange={this.handleFormFieldValueChanges}/>       </label>     </form>   </div> </div>;
     }
   }
 

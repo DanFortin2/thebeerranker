@@ -17,26 +17,6 @@ Beers.getLagers = () => {
   });
 };
 
-Beers.createLagers = beers => {
-  const url = `${baseUrl}/lagers`;
-  const fetchOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({beers: beers})
-  };
-  return fetch(url, fetchOptions).then(response => {
-    if (!response.ok) {
-      return new Promise(resolve => resolve(null));
-    }
-    return response.json().then(jsonResponse => {
-      return jsonResponse.beers;
-    });
-  });
-};
-
-
 Beers.getAles = () => {
   const url = `${baseUrl}/ales`;
 
@@ -49,8 +29,6 @@ Beers.getAles = () => {
     });
   });
 };
-
-
 
 Beers.getPilsner = () => {
   const url = `${baseUrl}/pilsner`;
@@ -65,8 +43,6 @@ Beers.getPilsner = () => {
   });
 };
 
-
-
 Beers.getStout = () => {
   const url = `${baseUrl}/stout`;
 
@@ -76,6 +52,43 @@ Beers.getStout = () => {
     }
     return response.json().then(jsonResponse => {
       return jsonResponse.beers.map(beer => beer);
+    });
+  });
+};
+
+Beers.createBeer = beers => {
+  let urlVariable = '';
+  switch (beers.beerlist) {
+    case 'lager':
+      urlVariable = '/lagers';
+      break;
+    case 'stout':
+      urlVariable = '/stout';
+      break;
+    case 'pilsner':
+      urlVariable = '/pilsner';
+      break;
+    case 'ale':
+      urlVariable = '/ales';
+      break;
+    default:
+      urlVariable = '/lagers';
+      break;
+  }
+  const url = `${baseUrl}${urlVariable}`;
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({beers: beers})
+  };
+  return fetch(url, fetchOptions).then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve(null));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse.beers;
     });
   });
 };

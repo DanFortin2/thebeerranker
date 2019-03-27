@@ -14,7 +14,7 @@ lagerRouter.get('/', (req, res, next) => {
   });
 });
 
-/*
+
 const validateBeer = (req, res, next) => {
   const newBeer = req.body.beers;
   if(!newBeer.name || !newBeer.location || !newBeer.description) {
@@ -22,9 +22,9 @@ const validateBeer = (req, res, next) => {
   }
   next();
 }
-*/
 
-lagerRouter.post('/', /*validateBeer,*/ (req, res, next) => {
+
+lagerRouter.post('/', validateBeer, (req, res, next) => {
   console.log(req.body);
   const newBeer = req.body.beers;
   db.run(`INSERT INTO LagerList (name, percent, ibu, description, location, imgUrl) values ($name, $percent, $ibu, $description, $location, $imgUrl)`,
