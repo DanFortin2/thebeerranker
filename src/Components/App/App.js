@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Router, Route } from 'react-router-dom';
-import history from './history';
+import History from './history';
 import Title from '../Title/Title'
 import LagerList from '../LagerList/LagerList'
 import AleList from '../AleList/AleList'
@@ -12,15 +12,13 @@ import './App.css';
 class App extends React.Component {
   render() {
     return (
-      <Router history={history}>
+      <Router history={History}>
         <div className="App">
-          <div>
             <Route exact path="/" component={Title} />
-            <Route path="/lagers" component={LagerList} />
+            <Route path="/lagers/:id" component={LagerList} />
             <Route path="/ales" component={AleList} />
             <Route path="/pilsner" component={PilsnerList} />
             <Route path="/stout" component={StoutList} />
-          </div>
         </div>
       </Router>
     );

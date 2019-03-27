@@ -19,7 +19,6 @@ Beers.getLagers = () => {
 
 Beers.createLagers = beers => {
   const url = `${baseUrl}/lagers`;
-
   const fetchOptions = {
     method: 'POST',
     headers: {
