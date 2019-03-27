@@ -17,6 +17,26 @@ Beers.getLagers = () => {
   });
 };
 
+Beers.createLagers = beers => {
+  const url = `${baseUrl}/lagers`;
+
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({beers: beers})
+  };
+  return fetch(url, fetchOptions).then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve(null));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse.beers;
+    });
+  });
+};
+
 
 Beers.getAles = () => {
   const url = `${baseUrl}/ales`;

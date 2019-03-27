@@ -1,5 +1,5 @@
 import React from 'react';
-import Beers from '../../Utils/BeerLister'
+import Beers from '../../Utils/BeerLister';
 
 
 class LagerList extends React.Component {

@@ -1,5 +1,6 @@
 import React from 'react';
 import BeerType from '../BeerType/BeerType';
+import Beers from '../../Utils/BeerLister';
 
 
 let beerTypes = {
@@ -15,16 +16,23 @@ class Title extends React.Component {
     super(props);
     this.state = {
       sortBy: '',
-      showAddBeerScreen: false
+      showAddBeerScreen: false,
+      beername: '',
+      brewed: '',
+      ibu: '',
+      alc: '',
+      beerlist: 'lager',
+      description: '',
+      beers: null
     };
     this.renderSortByOptions = this.renderSortByOptions.bind(this);
     this.handleSortByChange = this.handleSortByChange.bind(this);
     this.generateAddBeerScreen = this.generateAddBeerScreen.bind(this);
     this.displayBeerModal = this.displayBeerModal.bind(this);
     this.hideAddBeerScreen = this.hideAddBeerScreen.bind(this);
+    this.handleFormFieldValueChanges = this.handleFormFieldValueChanges.bind(this);
     this.addBeerTile = this.addBeerTile.bind(this);
   }
-
 
 
   renderSortByOptions() {
@@ -42,6 +50,14 @@ class Title extends React.Component {
     });
   }
 
+  getSortByClass(beerType) {
+    if(this.state.sortBy === beerType) {
+      return 'active'
+    } else {
+      return;
+    }
+  }
+
   generateAddBeerScreen() {
     this.setState({
       showAddBeerScreen: true
@@ -54,26 +70,61 @@ class Title extends React.Component {
     });
   }
 
-  addBeerTile() {
+  handleFormFieldValueChanges(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
     this.setState({
-      showAddBeerScreen: false
+      [name]: value
+    })
+  }
+
+  addBeerTile() {
+    const newBeer = {
+      name: this.state.beername,
+      percent: this.state.alc,
+      ibu: this.state.ibu,
+      description: this.state.description,
+      location: this.state.brewed,
+      beerlist: this.state.beerlist
+    }
+    if (!newBeer.name || !newBeer.location || !newBeer.description) {
+      alert("You must fill in all required fields")
+    } else {
+      this.setState({
+        beers: newBeer,
+        showAddBeerScreen: false,
+        beername: '',
+        brewed: '',
+        ibu: '',
+        alc: '',
+        description: ''
+      });
+    }
+    Beers.createLagers(this.state.beers).then(newBeers => {
+      this.props.history.push(`/lagers`);
+      this.setState({
+        newBeers: newBeers,
+        beers: JSON.parse(JSON.stringify(newBeers))
+      })
     });
   }
 
+/* logging to see beer object*/
+  componentDidUpdate() {
+    console.log(this.state.beers);
+  }
+
+
+
+
   displayBeerModal() {
     if (this.state.showAddBeerScreen === true) {
-      return <div className='Dialogue-Box'>   <div>     <ul className='menu-items'>       <li className='close' onClick={this.hideAddBeerScreen}>Close</li>       <li className='add' onClick={this.addBeerTile}>Add</li>     </ul>   </div>   <div>     <h2>Add Beer Review</h2>     <h3 className='required-fields'>* denotes required fields</h3>   </div>   <div className='beer-input-fields'>     <form>       <label><span className='required'>*</span>Name of Beer:         <input type="text" name="beername" maxlength="30" size="30"/>       </label>       <label><span className='required'>*</span>Brewed In:         <input type="text" name="Brewed"  maxlength="30" size="30"/>       </label>       <fieldset id="beer-dropdown">         <label><span className='required'>*</span>Beer Type:</label>         <select id = "myList">           <option value = "1">Lager</option>           <option value = "2">Stout</option>           <option value = "3">Pilsner</option>           <option value = "4">Ale</option>         </select>       </fieldset>       <label>IBU:         <input type="text" name="IBU"  maxlength="4" size="4"/>       </label>       <label>Alc %:         <input type="text" name="Alc"  maxlength="4" size="4"/>       </label>       <label className="formfielddesc"><span className='required'>*</span>Description:         <textarea type="text" name="Description"  maxlength="150" cols= "60" rows="3"/>       </label>     </form>   </div> </div>; 
+      return <div className='Dialogue-Box'>   <div>     <ul className='menu-items'>       <li className='close' onClick={this.hideAddBeerScreen}>Close</li>       <li className='add' onClick={this.addBeerTile}>Add</li>     </ul>   </div>   <div>     <h2>Add Beer Review</h2>     <h3 className='required-fields'>* denotes required fields</h3>   </div>   <div className='beer-input-fields'>     <form>       <label><span className='required'>*</span>Name of Beer:         <input type="text" name="beername" maxLength="30" size="30" onChange={this.handleFormFieldValueChanges}/>       </label>       <label><span className='required'>*</span>Brewed In:         <input type="text" name="brewed"  maxLength="30" size="30" onChange={this.handleFormFieldValueChanges}/>       </label>       <fieldset id="beer-dropdown">         <label><span className='required'>*</span>Beer Type:</label>         <select id = "myList" value = {this.state.beerlist} name="beerlist" onChange={this.handleFormFieldValueChanges}>           <option value = "lager">Lager</option>           <option value = "stout">Stout</option>           <option value = "pilsner">Pilsner</option>           <option value = "ale">Ale</option>         </select>       </fieldset>       <label>IBU:         <input type="text" name="ibu"  maxLength="4" size="4" onChange={this.handleFormFieldValueChanges}/>       </label>       <label>Alc %:         <input type="text" name="alc"  maxLength="4" size="4" onChange={this.handleFormFieldValueChanges}/>       </label>       <label className="formfielddesc"><span className='required'>*</span>Description:         <textarea type="text" name="description"  maxLength="150" cols= "60" rows="3" onChange={this.handleFormFieldValueChanges}/>       </label>     </form>   </div> </div>;
     }
   }
 
-  getSortByClass(beerType) {
-    if(this.state.sortBy === beerType) {
-      return 'active'
-    } else {
-      return;
-    }
-  }
-          //<AddBeer show={this.state.showAddBeerScreen}/>
+
   render() {
     return (
       <div className="Title">

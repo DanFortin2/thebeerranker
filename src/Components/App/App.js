@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, HashRouter as Router, Route } from 'react-router-dom';
+import { Link, Router, Route } from 'react-router-dom';
 import history from './history';
 import Title from '../Title/Title'
 import LagerList from '../LagerList/LagerList'
