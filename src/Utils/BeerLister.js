@@ -31,7 +31,7 @@ Beers.getAles = () => {
 };
 
 Beers.getPilsner = () => {
-  const url = `${baseUrl}/pilsner`;
+  const url = `${baseUrl}/pilsners`;
 
   return fetch(url).then(response => {
     if (!response.ok) {
@@ -44,7 +44,7 @@ Beers.getPilsner = () => {
 };
 
 Beers.getStout = () => {
-  const url = `${baseUrl}/stout`;
+  const url = `${baseUrl}/stouts`;
 
   return fetch(url).then(response => {
     if (!response.ok) {
@@ -63,10 +63,10 @@ Beers.createBeer = beers => {
       urlVariable = '/lagers';
       break;
     case 'stout':
-      urlVariable = '/stout';
+      urlVariable = '/stouts';
       break;
     case 'pilsner':
-      urlVariable = '/pilsner';
+      urlVariable = '/pilsners';
       break;
     case 'ale':
       urlVariable = '/ales';

@@ -7,7 +7,7 @@ const stoutRouter = require('./stoutlist.js');
 
 apiRouter.use('/lagers', lagerRouter);
 apiRouter.use('/ales', aleRouter);
-apiRouter.use('/pilsner', pilsnerRouter);
-apiRouter.use('/stout', stoutRouter);
+apiRouter.use('/pilsners', pilsnerRouter);
+apiRouter.use('/stouts', stoutRouter);
 
 module.exports = apiRouter;

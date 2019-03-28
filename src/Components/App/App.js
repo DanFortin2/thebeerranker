@@ -17,8 +17,8 @@ class App extends React.Component {
             <Route exact path="/" component={Title} />
             <Route path="/lagers/:id" component={LagerList} />
             <Route path="/ales" component={AleList} />
-            <Route path="/pilsner" component={PilsnerList} />
-            <Route path="/stout" component={StoutList} />
+            <Route path="/pilsners" component={PilsnerList} />
+            <Route path="/stouts" component={StoutList} />
         </div>
       </Router>
     );
