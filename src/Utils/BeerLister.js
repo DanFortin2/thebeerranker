@@ -17,6 +17,14 @@ Beers.getLagers = () => {
   });
 };
 
+Beers.deleteItem = id => {
+  const url = `${baseUrl}/lagers/${id}`;
+  const fetchOptions = {
+    method: 'DELETE'
+  };
+  return fetch(url, fetchOptions);
+};
+
 Beers.getAles = () => {
   const url = `${baseUrl}/ales`;
 

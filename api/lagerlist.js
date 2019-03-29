@@ -3,7 +3,7 @@ const lagerRouter = express.Router();
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database(process.env.TEST_DATABASE || './database.sqlite')
 
-//grab all employess that are currently employed
+
 lagerRouter.get('/', (req, res, next) => {
   db.all(`SELECT * FROM LagerList`, (err, beers) => {
     if (err) {
@@ -25,7 +25,7 @@ const validateBeer = (req, res, next) => {
 
 
 lagerRouter.post('/', validateBeer, (req, res, next) => {
-  console.log(req.body);
+  console.log(`console log ${req.body}`);
   const newBeer = req.body.beers;
   db.run(`INSERT INTO LagerList (name, percent, ibu, description, location, imgUrl) values ($name, $percent, $ibu, $description, $location, $imgUrl)`,
   {
@@ -48,6 +48,23 @@ lagerRouter.post('/', validateBeer, (req, res, next) => {
     });
   });
 });
+
+
+lagerRouter.delete('/:id', (req, res, next) => {
+  console.log(req.params.id);
+  db.run(`DELETE FROM LagerList WHERE id = $id`,
+  {
+    $id : req.params.id
+  },
+  function(err) {
+    if(err) {
+      next(err);
+    } else {
+      res.status(204).send();
+    }
+  });
+});
+
 
 
 module.exports = lagerRouter;

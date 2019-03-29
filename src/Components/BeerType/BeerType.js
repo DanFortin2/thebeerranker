@@ -3,6 +3,7 @@ import LagerList from '../LagerList/LagerList';
 import AleList from '../AleList/AleList';
 import PilsnerList from '../PilsnerList/PilsnerList';
 import StoutList from '../StoutList/StoutList';
+import { Link } from 'react-router-dom';
 
 class BeerType extends React.Component {
   renderBeerOptions() {

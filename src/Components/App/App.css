@@ -102,14 +102,12 @@ img {
 .Add-Beer {
   color: #d4cfcf;
   font-size: 3rem;
-  /*border: solid 1px red;*/
   display: flex;
   justify-content: flex-end;
   padding-right: 5rem;
 }
 
 .plus-icon {
-  /*border: solid red 1px;*/
   cursor: pointer;
   color: #f28e1c;
 }
@@ -227,6 +225,7 @@ input, textarea, select {
 
 .Lager-Tile {
   background-color: rgba(0,0,0,0.75);
+  color: #f28e1c;
   width: 28%;
   margin: 1.5%;
   border: solid 2px #f28e1c;
@@ -235,7 +234,9 @@ input, textarea, select {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
+  overflow: hidden;
 }
+
 
 .Beer-information {
   display: flex;
@@ -259,6 +260,28 @@ input, textarea, select {
 
 .beerdesc p {
   font-size: 1rem;
+}
+
+.delete-me {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.delete-me span  {
+  border: solid 1px #f28e1c;
+  padding: 1px 4px;
+  border-radius: 5px;
+}
+
+.delete-me span:hover,
+.delete-me span.active,
+.delete-me span.active:hover {
+  color: #d4cfcf;
 }
 
 /*Media Queries*/

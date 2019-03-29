@@ -113,6 +113,7 @@ class Title extends React.Component {
     }
     console.log(newBeer);
     Beers.createBeer(newBeer).then(newBeers => {
+      this.props.history.push('/');
       this.setState({
         beers: JSON.parse(JSON.stringify(newBeers))
       })
