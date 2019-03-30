@@ -8,15 +8,25 @@ import { Link } from 'react-router-dom';
 class BeerType extends React.Component {
   renderBeerOptions() {
     if(this.props.sortBy === 'Lager') {
-      return <LagerList />;
+      return (
+        <Link to={`/lagers`}>
+          <LagerList />
+        </Link>
+      );
     } else if(this.props.sortBy === 'Ale') {
-      return <AleList />;
+      return (
+        <Link to={`/ales`}>
+          <AleList />
+        </Link>
+      );
     } else if(this.props.sortBy === 'Pilsner') {
       return <PilsnerList />;
     } else if(this.props.sortBy === 'Stout') {
       return <StoutList />;
     }
   }
+
+
   render() {
     return (
       <div className='Main-List'>

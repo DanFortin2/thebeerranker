@@ -130,6 +130,7 @@ img {
 /*Beer List determination*/
 
 .Beer-List {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   padding-left: 6%;

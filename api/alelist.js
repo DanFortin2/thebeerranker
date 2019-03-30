@@ -49,5 +49,20 @@ aleRouter.post('/', validateBeer, (req, res, next) => {
   });
 });
 
+aleRouter.delete('/:id', (req, res, next) => {
+  console.log(req.params.id);
+  db.run(`DELETE FROM AleList WHERE id = $id`,
+  {
+    $id : req.params.id
+  },
+  function(err) {
+    if(err) {
+      next(err);
+    } else {
+      res.status(204).send();
+    }
+  });
+});
+
 
 module.exports = aleRouter;

@@ -1,7 +1,9 @@
 import React from 'react';
-import BeerType from '../BeerType/BeerType';
 import Beers from '../../Utils/BeerLister';
-
+import LagerList from '../LagerList/LagerList';
+import AleList from '../AleList/AleList';
+import PilsnerList from '../PilsnerList/PilsnerList';
+import StoutList from '../StoutList/StoutList';
 
 let beerTypes = {
   'Lager': 'Lager',
@@ -24,14 +26,8 @@ class Title extends React.Component {
       beerlist: '',
       description: '',
       imgUrl: '/images/ale/northernloggersleepinggiant.jpg',
-      beers: {
-        "name": "test",
-        "percent":"test",
-        "ibu":"test",
-        "description":"test",
-        "location":"test",
-        "imgUrl":"/images/ale/northernloggersleepinggiant.jpg"
-      }
+      beers: {},
+      updateBeerList: false
     };
     this.renderSortByOptions = this.renderSortByOptions.bind(this);
     this.handleSortByChange = this.handleSortByChange.bind(this);
@@ -40,6 +36,7 @@ class Title extends React.Component {
     this.hideAddBeerScreen = this.hideAddBeerScreen.bind(this);
     this.handleFormFieldValueChanges = this.handleFormFieldValueChanges.bind(this);
     this.addBeerTile = this.addBeerTile.bind(this);
+    this.renderBeerOptions = this.renderBeerOptions.bind(this);
   }
 
 
@@ -111,12 +108,10 @@ class Title extends React.Component {
         description: ''
       });
     }
-    console.log(newBeer);
     Beers.createBeer(newBeer).then(newBeers => {
-      this.props.history.push('/');
       this.setState({
-        beers: JSON.parse(JSON.stringify(newBeers))
-      })
+        updateBeerList: true
+      });
     });
   }
 
@@ -125,6 +120,26 @@ class Title extends React.Component {
   displayBeerModal() {
     if (this.state.showAddBeerScreen === true) {
       return <div className='Dialogue-Box'>   <div>     <ul className='menu-items'>       <li className='close' onClick={this.hideAddBeerScreen}>Close</li>       <li className='add' onClick={this.addBeerTile}>Add</li>     </ul>   </div>   <div>     <h2>Add Beer Review</h2>     <h3 className='required-fields'>* denotes required fields</h3>   </div>   <div className='beer-input-fields'>     <form>       <label><span className='required'>*</span>Name of Beer:         <input type="text" name="beername" maxLength="30" size="30" onChange={this.handleFormFieldValueChanges}/>       </label>       <label><span className='required'>*</span>Brewed In:         <input type="text" name="brewed"  maxLength="30" size="30" onChange={this.handleFormFieldValueChanges}/>       </label>       <fieldset id="beer-dropdown">         <label><span className='required'>*</span>Beer Type:</label>         <select id = "myList" name="beerlist"  onChange={this.handleFormFieldValueChanges}>           <option value = "lager">Lager</option>           <option value = "stout">Stout</option>           <option value = "pilsner">Pilsner</option>           <option value = "ale">Ale</option>         </select>       </fieldset>       <label>IBU:         <input type="text" name="ibu"  maxLength="4" size="4" onChange={this.handleFormFieldValueChanges}/>       </label>       <label><span className='required'>*</span>Alc %:         <input type="text" name="alc"  maxLength="4" size="4" onChange={this.handleFormFieldValueChanges}/>       </label>       <label className="formfielddesc"><span className='required'>*</span>Description:         <textarea type="text" name="description"  maxLength="150" cols= "60" rows="3" onChange={this.handleFormFieldValueChanges}/>       </label>     </form>   </div> </div>;
+    }
+  }
+
+  renderBeerOptions() {
+    if(this.state.sortBy === 'Lager') {
+      return (
+        <LagerList updateBeerList={this.props.updateBeerList}/>
+      );
+    } else if(this.state.sortBy === 'Ale') {
+      return (
+        <AleList updateBeerList={this.props.updateBeerList}/>
+      );
+    } else if(this.state.sortBy === 'Pilsner') {
+      return (
+        <PilsnerList updateBeerList={this.props.updateBeerList}/>
+      );
+    } else if(this.state.sortBy === 'Stout') {
+      return (
+        <StoutList updateBeerList={this.props.updateBeerList}/>
+      );
     }
   }
 
@@ -137,7 +152,7 @@ class Title extends React.Component {
             <h1>The Beer Ranker</h1>
           </div>
           <div>
-            <ul className='Beer-Types' onClick={this.handleSortChangeAutoSearch}>
+            <ul className='Beer-Types'>
               {this.renderSortByOptions()}
             </ul>
           </div>
@@ -146,7 +161,7 @@ class Title extends React.Component {
           </div>
         </header>
         <div className = "HomePage">
-          <BeerType  sortBy={this.state.sortBy}/>
+          {this.renderBeerOptions()}
         </div>
         <div className='Add-Dialogue'>
           {this.displayBeerModal()}

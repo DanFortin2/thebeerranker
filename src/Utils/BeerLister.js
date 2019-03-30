@@ -17,7 +17,7 @@ Beers.getLagers = () => {
   });
 };
 
-Beers.deleteItem = id => {
+Beers.deleteLagers = id => {
   const url = `${baseUrl}/lagers/${id}`;
   const fetchOptions = {
     method: 'DELETE'
@@ -38,6 +38,14 @@ Beers.getAles = () => {
   });
 };
 
+Beers.deleteAles = id => {
+  const url = `${baseUrl}/ales/${id}`;
+  const fetchOptions = {
+    method: 'DELETE'
+  };
+  return fetch(url, fetchOptions);
+};
+
 Beers.getPilsner = () => {
   const url = `${baseUrl}/pilsners`;
 
@@ -51,6 +59,14 @@ Beers.getPilsner = () => {
   });
 };
 
+Beers.deletePilsner = id => {
+  const url = `${baseUrl}/pilsners/${id}`;
+  const fetchOptions = {
+    method: 'DELETE'
+  };
+  return fetch(url, fetchOptions);
+};
+
 Beers.getStout = () => {
   const url = `${baseUrl}/stouts`;
 
@@ -62,6 +78,14 @@ Beers.getStout = () => {
       return jsonResponse.beers.map(beer => beer);
     });
   });
+};
+
+Beers.deleteStout = id => {
+  const url = `${baseUrl}/stouts/${id}`;
+  const fetchOptions = {
+    method: 'DELETE'
+  };
+  return fetch(url, fetchOptions);
 };
 
 Beers.createBeer = beers => {

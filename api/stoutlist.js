@@ -49,4 +49,19 @@ stoutRouter.post('/', validateBeer, (req, res, next) => {
   });
 });
 
+stoutRouter.delete('/:id', (req, res, next) => {
+  console.log(req.params.id);
+  db.run(`DELETE FROM StoutList WHERE id = $id`,
+  {
+    $id : req.params.id
+  },
+  function(err) {
+    if(err) {
+      next(err);
+    } else {
+      res.status(204).send();
+    }
+  });
+});
+
 module.exports = stoutRouter;

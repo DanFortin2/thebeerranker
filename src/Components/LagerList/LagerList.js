@@ -1,6 +1,5 @@
 import React from 'react';
 import Beers from '../../Utils/BeerLister';
-import { withRouter } from "react-router-dom";
 
 class LagerList extends React.Component {
   constructor(props) {
@@ -21,24 +20,28 @@ class LagerList extends React.Component {
 
 
   deleteItem(id) {
-    Beers.deleteItem(id).then(() => {
-      this.props.history.push('/#');
-    });
-  }
-
-/*
-  deleteItem() {
-    Beers.deleteItem(this.state.beers.id).then(beer => {
-      const stateBeer = JSON.parse(JSON.stringify(this.state.beers));
-      this.setState({
-        beers: JSON.parse(JSON.stringify(stateBeer))
+    Beers.deleteLagers(id).then(() => {
+      Beers.getLagers().then(beerItem => {
+        this.setState({
+          beers: beerItem
+        })
       });
     });
   }
-  */
+
+  componentWillReceiveProps(props) {
+    const refresh = this.props;
+    if (props.refresh !== refresh) {
+      Beers.getLagers().then(beerItem => {
+        this.setState({
+          beers: beerItem
+        })
+      });
+    }
+  }
 
 
-  renderSortByOptions() {
+  renderBeerList() {
     //The Object.keys() method returns an array of a given object's own property names, in the same order as we get with a normal loop
     return Object.keys(this.state.beers).map(beerType => {
       let beerTypeValue = this.state.beers[beerType];
@@ -50,12 +53,14 @@ class LagerList extends React.Component {
 
   render() {
     return (
-      <div className='Beer-List'>
-        {this.renderSortByOptions()}
+      <div>
+        <div className='Beer-List'>
+          {this.renderBeerList()}
+        </div>
       </div>
     );
   }
 }
 
 
-export default withRouter(LagerList);
+export default LagerList;
