@@ -205,9 +205,6 @@ input, textarea, select {
   border-radius: 5px;
 }
 
-.beer-input-fields input, .beer-input-fields textarea, .beer-input-fields fieldset {
-  margin-left: 20px;
-}
 
 #beer-dropdown label, #beer-dropdown select  {
   margin-top: 0.67rem;
@@ -215,6 +212,10 @@ input, textarea, select {
 
 #beer-dropdown label {
   margin-right: 5px;
+}
+
+.beer-color {
+  margin-right: 2rem;
 }
 
 
