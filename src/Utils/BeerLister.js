@@ -25,6 +25,9 @@ Beers.deleteLagers = id => {
   return fetch(url, fetchOptions);
 };
 
+
+
+
 Beers.getAles = () => {
   const url = `${baseUrl}/ales`;
 
@@ -124,6 +127,29 @@ Beers.createBeer = beers => {
     });
   });
 };
+
+
+
+Beers.updateLagers = beers => {
+  const url = `${baseUrl}/lagers/${beers.id}`; 
+  const fetchOptions = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({beers: beers})
+  };
+  return fetch(url, fetchOptions).then(response => {
+    if (!response.ok) {
+      return new Promise(resolve => resolve(null));
+    }
+    return response.json().then(jsonResponse => {
+      return jsonResponse.beers;
+    });
+  });
+}
+
+
 
 
 export default Beers;

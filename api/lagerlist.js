@@ -25,7 +25,6 @@ const validateBeer = (req, res, next) => {
 
 
 lagerRouter.post('/', validateBeer, (req, res, next) => {
-  console.log(`console log ${req.body}`);
   const newBeer = req.body.beers;
   db.run(`INSERT INTO LagerList (name, percent, ibu, description, location, imgUrl) values ($name, $percent, $ibu, $description, $location, $imgUrl)`,
   {
@@ -50,8 +49,35 @@ lagerRouter.post('/', validateBeer, (req, res, next) => {
 });
 
 
+lagerRouter.put('/:beerId', validateBeer, (req, res, next) => {
+  const newBeer = req.body.beers;
+  const beerId = req.params.beerId;
+  db.run(`UPDATE LagerList SET name = $name, percent = $percent, ibu = $ibu, description = $description, location = $location, imgUrl = $imgUrl WHERE id = $beerId`,
+  {
+    $beerId : beerId,
+    $name : newBeer.name,
+    $percent : newBeer.percent,
+    $ibu : newBeer.ibu,
+    $description : newBeer.description,
+    $location : newBeer.location,
+    $imgUrl : newBeer.imgUrl
+  },
+  function(err) {
+    if(err) {
+      next(err);
+    }
+    db.get(`SELECT * FROM LagerList WHERE id = ${beerId}`, (err, beers) => {
+      if (!beers) {
+        res.status(500).send();
+      }
+      res.status(200).json( {beers : beers} );
+    });
+  });
+});
+
+
+
 lagerRouter.delete('/:id', (req, res, next) => {
-  console.log(req.params.id);
   db.run(`DELETE FROM LagerList WHERE id = $id`,
   {
     $id : req.params.id

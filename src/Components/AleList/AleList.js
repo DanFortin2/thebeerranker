@@ -1,6 +1,5 @@
 import React from 'react';
 import Beers from '../../Utils/BeerLister'
-import Title from '../Title/Title'
 
 let beerTypes = {
   'Lager': 'Lager',

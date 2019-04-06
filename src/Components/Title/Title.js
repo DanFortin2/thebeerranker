@@ -26,7 +26,6 @@ class Title extends React.Component {
       beerlist: '',
       description: '',
       imgUrl: '',
-      beers: {},
       updateBeerList: false
     };
     this.renderSortByOptions = this.renderSortByOptions.bind(this);
@@ -87,13 +86,13 @@ class Title extends React.Component {
 
   addBeerTile() {
     const newBeer = {
-      "beerlist": this.state.beerlist,
-      "name": this.state.beername,
-      "percent": this.state.alc,
-      "ibu": this.state.ibu,
-      "description": this.state.description,
-      "location": this.state.brewed,
-      "imgUrl": this.state.imgUrl
+      beerlist: this.state.beerlist,
+      name: this.state.beername,
+      percent: this.state.alc,
+      ibu: this.state.ibu,
+      description: this.state.description,
+      location: this.state.brewed,
+      imgUrl: this.state.imgUrl
     }
     if (!newBeer.name || !newBeer.location || !newBeer.description || !newBeer.percent || !newBeer.imgUrl || !newBeer.beerlist) {
       alert("You must fill in all required fields")
