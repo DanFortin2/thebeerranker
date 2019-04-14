@@ -197,7 +197,7 @@ img {
 }
 
 .beer-input-fields label {
-  margin: 10px 30px;
+  margin: 10px 25px;
 }
 
 input, textarea, select {
@@ -221,6 +221,10 @@ input, textarea, select {
 
 .formfielddesc {
   display: flex;
+}
+
+textarea {
+  margin-left: 5px;
 }
 
 /*Beer Tiles*/

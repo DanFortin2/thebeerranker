@@ -27,11 +27,11 @@ const validateBeer = (req, res, next) => {
 pilsnerRouter.post('/', validateBeer, (req, res, next) => {
   console.log(req.body);
   const newBeer = req.body.beers;
-  db.run(`INSERT INTO PilsnerList (name, percent, ibu, description, location, imgUrl) values ($name, $percent, $ibu, $description, $location, $imgUrl)`,
+  db.run(`INSERT INTO PilsnerList (name, percent, rating, description, location, imgUrl) values ($name, $percent, $rating, $description, $location, $imgUrl)`,
   {
     $name : newBeer.name,
     $percent : newBeer.percent,
-    $ibu : newBeer.ibu,
+    $rating : newBeer.rating,
     $description : newBeer.description,
     $location : newBeer.location,
     $imgUrl : newBeer.imgUrl
@@ -45,6 +45,32 @@ pilsnerRouter.post('/', validateBeer, (req, res, next) => {
         res.status(500).send();
       }
       res.status(201).json( {beers : beers} );
+    });
+  });
+});
+
+pilsnerRouter.put('/:id', validateBeer, (req, res, next) => {
+  const newBeer = req.body.beers;
+  const beerId = req.params.id;
+  db.run(`UPDATE PilsnerList SET name = $name, percent = $percent, rating = $rating, description = $description, location = $location, imgUrl = $imgUrl WHERE id = $beerId`,
+  {
+    $beerId : beerId,
+    $name : newBeer.name,
+    $percent : newBeer.percent,
+    $rating : newBeer.rating,
+    $description : newBeer.description,
+    $location : newBeer.location,
+    $imgUrl : newBeer.imgUrl
+  },
+  function(err) {
+    if(err) {
+      next(err);
+    }
+    db.get(`SELECT * FROM PilsnerList WHERE id = ${beerId}`, (err, beers) => {
+      if (!beers) {
+        res.status(500).send();
+      }
+      res.status(200).json( {beers : beers} );
     });
   });
 });

@@ -26,11 +26,11 @@ const validateBeer = (req, res, next) => {
 
 lagerRouter.post('/', validateBeer, (req, res, next) => {
   const newBeer = req.body.beers;
-  db.run(`INSERT INTO LagerList (name, percent, ibu, description, location, imgUrl) values ($name, $percent, $ibu, $description, $location, $imgUrl)`,
+  db.run(`INSERT INTO LagerList (name, percent, rating, description, location, imgUrl) values ($name, $percent, $rating, $description, $location, $imgUrl)`,
   {
     $name : newBeer.name,
     $percent : newBeer.percent,
-    $ibu : newBeer.ibu,
+    $rating : newBeer.rating,
     $description : newBeer.description,
     $location : newBeer.location,
     $imgUrl : newBeer.imgUrl
@@ -49,15 +49,15 @@ lagerRouter.post('/', validateBeer, (req, res, next) => {
 });
 
 
-lagerRouter.put('/:beerId', validateBeer, (req, res, next) => {
+lagerRouter.put('/:id', validateBeer, (req, res, next) => {
   const newBeer = req.body.beers;
-  const beerId = req.params.beerId;
-  db.run(`UPDATE LagerList SET name = $name, percent = $percent, ibu = $ibu, description = $description, location = $location, imgUrl = $imgUrl WHERE id = $beerId`,
+  const beerId = req.params.id;
+  db.run(`UPDATE LagerList SET name = $name, percent = $percent, rating = $rating, description = $description, location = $location, imgUrl = $imgUrl WHERE id = $beerId`,
   {
     $beerId : beerId,
     $name : newBeer.name,
     $percent : newBeer.percent,
-    $ibu : newBeer.ibu,
+    $rating : newBeer.rating,
     $description : newBeer.description,
     $location : newBeer.location,
     $imgUrl : newBeer.imgUrl

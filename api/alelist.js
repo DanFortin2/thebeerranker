@@ -27,11 +27,11 @@ const validateBeer = (req, res, next) => {
 aleRouter.post('/', validateBeer, (req, res, next) => {
   console.log(req.body);
   const newBeer = req.body.beers;
-  db.run(`INSERT INTO AleList (name, percent, ibu, description, location, imgUrl) values ($name, $percent, $ibu, $description, $location, $imgUrl)`,
+  db.run(`INSERT INTO AleList (name, percent, rating, description, location, imgUrl) values ($name, $percent, $rating, $description, $location, $imgUrl)`,
   {
     $name : newBeer.name,
     $percent : newBeer.percent,
-    $ibu : newBeer.ibu,
+    $rating : newBeer.rating,
     $description : newBeer.description,
     $location : newBeer.location,
     $imgUrl : newBeer.imgUrl
@@ -48,6 +48,34 @@ aleRouter.post('/', validateBeer, (req, res, next) => {
     });
   });
 });
+
+
+aleRouter.put('/:id', validateBeer, (req, res, next) => {
+  const newBeer = req.body.beers;
+  const beerId = req.params.id;
+  db.run(`UPDATE AleList SET name = $name, percent = $percent, rating = $rating, description = $description, location = $location, imgUrl = $imgUrl WHERE id = $beerId`,
+  {
+    $beerId : beerId,
+    $name : newBeer.name,
+    $percent : newBeer.percent,
+    $rating : newBeer.rating,
+    $description : newBeer.description,
+    $location : newBeer.location,
+    $imgUrl : newBeer.imgUrl
+  },
+  function(err) {
+    if(err) {
+      next(err);
+    }
+    db.get(`SELECT * FROM AleList WHERE id = ${beerId}`, (err, beers) => {
+      if (!beers) {
+        res.status(500).send();
+      }
+      res.status(200).json( {beers : beers} );
+    });
+  });
+});
+
 
 aleRouter.delete('/:id', (req, res, next) => {
   console.log(req.params.id);
