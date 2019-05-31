@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 
 const Beers = {};
-const baseUrl = 'http://localhost:4000/api'
+const baseUrl = 'https://dansbeerranker.herokuapp.com/api'
 
 
 
